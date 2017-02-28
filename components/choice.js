@@ -7,7 +7,7 @@ export default class Choice extends Component {
 			return <Text style={styles.bet}>Bet</Text>
 		}
 		else {
-			return <Text style={styles.flop}>Flop</Text>
+			return <Text style={styles.fold}>Fold</Text>
 		}
 	}
 }
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   	color: 'green',
   	fontSize: 50,
   },
-  flop: {
+  fold: {
   	color: 'red',
   	fontSize: 50,
   },
