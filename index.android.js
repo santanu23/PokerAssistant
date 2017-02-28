@@ -11,22 +11,49 @@ import {
   Text,
   View
 } from 'react-native';
+import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 
 export default class PokerAssistant extends Component {
+	state = {
+	    index: 0,
+	    routes: [
+	      { key: '1', title: 'Random' },
+	      { key: '2', title: 'Calculated' },
+	    ],
+  	};
+
+  	_handleChangeTab = (index) => {
+    this.setState({ index });
+  };
+
+  _renderHeader = (props) => {
+    return <TabBar {...props} />;
+  };
+
+  _renderScene = ({ route }) => {
+    switch (route.key) {
+    case '1':
+      return <View style={[ styles.page, { backgroundColor: '#ffffff' } ]}>
+      			<Text>Flop</Text>
+      			<Text>Check</Text>
+      			<Text>Raise</Text>
+      		 </View>;
+    case '2':
+      return <View style={[ styles.page, { backgroundColor: '#ffffff' } ]} />;
+    default:
+      return null;
+    }
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <TabViewAnimated
+        style={styles.container}
+        navigationState={this.state}
+        renderScene={this._renderScene}
+        renderHeader={this._renderHeader}
+        onRequestChangeTab={this._handleChangeTab}
+      ></TabViewAnimated>
     );
   }
 }
@@ -34,19 +61,11 @@ export default class PokerAssistant extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+  },
+  page: {
+    flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    justifyContent: 'center',
   },
 });
 
