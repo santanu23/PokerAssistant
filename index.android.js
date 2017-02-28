@@ -5,55 +5,41 @@
  */
 
 import React, { Component } from 'react';
+import Choice from './components/choice';
+
 import {
   AppRegistry,
   StyleSheet,
   Text,
+  Button,
   View
 } from 'react-native';
-import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 
 export default class PokerAssistant extends Component {
-	state = {
-	    index: 0,
-	    routes: [
-	      { key: '1', title: 'Random' },
-	      { key: '2', title: 'Calculated' },
-	    ],
+	state = {	   
+	    random: 1,
   	};
 
-  	_handleChangeTab = (index) => {
-    this.setState({ index });
-  };
-
-  _renderHeader = (props) => {
-    return <TabBar {...props} />;
-  };
-
-  _renderScene = ({ route }) => {
-    switch (route.key) {
-    case '1':
-      return <View style={[ styles.page, { backgroundColor: '#ffffff' } ]}>
-      			<Text>Flop</Text>
-      			<Text>Check</Text>
-      			<Text>Raise</Text>
-      		 </View>;
-    case '2':
-      return <View style={[ styles.page, { backgroundColor: '#ffffff' } ]} />;
-    default:
-      return null;
-    }
+  _onButtonPress = () => {
+  	rand = Math.floor((Math.random() * 2) + 1);
+  	this.setState({random: rand});
   };
 
   render() {
     return (
-      <TabViewAnimated
-        style={styles.container}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onRequestChangeTab={this._handleChangeTab}
-      ></TabViewAnimated>
+		<View>
+			<View style={{}}>
+				<Button
+					onPress={this._onButtonPress}
+					title="Random"
+					accessibilityLabel="Random Button"
+					color="green">
+				</Button>
+			</View>
+			<View style={{}}>
+				<Choice random = {this.state.random}/>
+			</View>
+	    </View>
     );
   }
 }
