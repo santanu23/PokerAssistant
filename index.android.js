@@ -27,16 +27,16 @@ export default class PokerAssistant extends Component {
 
   render() {
     return (
-		<View>
-			<View style={{}}>
+		<View style={styles.container}>
+			<View style={styles.button}>
 				<Button
 					onPress={this._onButtonPress}
 					title="Random"
 					accessibilityLabel="Random Button"
-					color="green">
+					color="red">
 				</Button>
 			</View>
-			<View style={{}}>
+			<View style={styles.choice}>
 				<Choice random = {this.state.random}/>
 			</View>
 	    </View>
@@ -47,9 +47,15 @@ export default class PokerAssistant extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor : '#e5bcbc',
   },
-  page: {
+  button: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  choice: {
+  	flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

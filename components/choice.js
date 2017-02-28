@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 export default class Choice extends Component {
 	render() {
 		if (this.props.random == 1){
-			return <Text>Bet</Text>
+			return <Text style={styles.bet}>Bet</Text>
 		}
 		else {
-			return <Text>Flop</Text>
+			return <Text style={styles.flop}>Flop</Text>
 		}
 	}
 }
+
+const styles = StyleSheet.create({
+  bet: {
+  	color: 'green',
+  	fontSize: 50,
+  },
+  flop: {
+  	color: 'red',
+  	fontSize: 50,
+  },
+});
